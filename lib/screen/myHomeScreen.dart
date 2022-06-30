@@ -1,115 +1,82 @@
+import 'package:class_bit_flutter/screen/myFeedHome.dart';
 import 'package:flutter/material.dart';
 
-class MyHomeScreen extends StatelessWidget {
-  const MyHomeScreen({Key? key}) : super(key: key);
+class MyHomeScreen extends StatefulWidget {
+   MyHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomeScreen> createState() => _MyHomeScreenState();
+}
+
+class _MyHomeScreenState extends State<MyHomeScreen> {
+  int currentIndex=0;
+
+  _onTabSelected(int index){
+    setState(() {
+      currentIndex=index;
+    });
+  }
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    MyFeedHomePage(),
+    Text(
+      'Index 1: Business',
+
+    ),
+    Text(
+      'Index 2: School',
+    ),
+    Text(
+      'Index 0: Home',
+
+    ),
+    Text(
+      'Index 1: Business',
+
+    ),
+    Text(
+      'Index 2: School',
+    ),
+  ];
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(
-      child: ListView(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.green.shade100,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.orange.shade100,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.green.shade100,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.orange.shade100,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.orange,
-                ),
-              ],
+    return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-          )
-        ],
-      ),
-    ));
+            BottomNavigationBarItem(
+              icon: Icon(Icons.group),
+              label: 'Friends',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.video_collection),
+              label: 'Watch',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business_center),
+              label: 'MarketPlace',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notification_important_sharp),
+              label: 'Notification',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: 'Menu',
+
+            ),
+          ],
+          currentIndex: currentIndex,
+          selectedItemColor: Colors.blue[800],
+          unselectedItemColor: Colors.black,
+          unselectedLabelStyle: TextStyle(color: Colors.black),
+          onTap: _onTabSelected,
+        ),
+        body: Center(child: _widgetOptions[currentIndex]));
   }
 }
