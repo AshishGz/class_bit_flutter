@@ -1,7 +1,10 @@
+import 'package:class_bit_flutter/model/story.dart';
 import 'package:flutter/material.dart';
 
 class StoryUI extends StatelessWidget {
-  const StoryUI({Key? key}) : super(key: key);
+  Story story;
+
+  StoryUI({Key? key,required this.story}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class StoryUI extends StatelessWidget {
           color: Colors.green,
         borderRadius: BorderRadius.circular(12),
         image: DecorationImage(
-          image: NetworkImage("https://i.pinimg.com/236x/a0/53/3d/a0533dfabfaf6173efe629e62e1c98fc.jpg"),
+          image: NetworkImage(story.story),
           fit: BoxFit.cover,
         ),
       ),
@@ -32,7 +35,7 @@ class StoryUI extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   child: Padding(
                     padding: const EdgeInsets.all(2), // Border radius
-                    child: ClipOval(child: Image.network("https://i.pinimg.com/236x/a0/53/3d/a0533dfabfaf6173efe629e62e1c98fc.jpg")),
+                    child: ClipOval(child: Image.network(story.story)),
                   ),
                 ),
               ),
@@ -40,7 +43,7 @@ class StoryUI extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Motu Patlu",style: TextStyle(
+            child: Text(story.name,style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
               fontSize: 16

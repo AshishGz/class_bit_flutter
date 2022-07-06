@@ -1,9 +1,30 @@
+import 'package:class_bit_flutter/model/story.dart';
+import 'package:class_bit_flutter/util/data.dart';
 import 'package:class_bit_flutter/widgets/storyUI.dart';
 import 'package:flutter/material.dart';
 
-class MyFeedHomePage extends StatelessWidget {
+class MyFeedHomePage extends StatefulWidget {
   const MyFeedHomePage({Key? key}) : super(key: key);
 
+  @override
+  State<MyFeedHomePage> createState() => _MyFeedHomePageState();
+}
+
+class _MyFeedHomePageState extends State<MyFeedHomePage> {
+
+  List<Story> _stories=[];
+
+  @override
+  initState(){
+    getStoryData();
+
+  }
+
+  getStoryData(){
+    STORY_DATA.forEach((element) {
+      _stories.add(Story.fromJson(element));
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -15,10 +36,10 @@ class MyFeedHomePage extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                ...[1,2,3,4,5,6,7,8,9].map((e) =>
+                ..._stories.map((e) =>
                     Padding(
                       padding: const EdgeInsets.only(right:8.0),
-                      child: StoryUI(),
+                      child: StoryUI(story: e,),
                     ),
                 )
 
