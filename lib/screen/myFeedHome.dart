@@ -1,5 +1,6 @@
 import 'package:class_bit_flutter/model/story.dart';
 import 'package:class_bit_flutter/util/data.dart';
+import 'package:class_bit_flutter/widgets/feedWithTextBackground.dart';
 import 'package:class_bit_flutter/widgets/storyUI.dart';
 import 'package:flutter/material.dart';
 
@@ -41,13 +42,21 @@ class _MyFeedHomePageState extends State<MyFeedHomePage> {
                       padding: const EdgeInsets.only(right:8.0),
                       child: StoryUI(story: e,),
                     ),
-                )
+                ),
+
 
 
               ],
             ),
           ),
         ),
+       ... [1,2,2,2,2,2,2,2].map((e) =>
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: FeedWithTextBackground(),
+            ),
+        )
+
       ],
     );
   }
